@@ -1,6 +1,9 @@
-// User Module
-// Placeholder content for user.module.ts
+import { Module } from '@nestjs/common';
+import { UserController } from './user.controller';
+import { UserService } from './user.service';
 
-export class UserModule {
-  // Module implementation
-}
+@Module({
+  controllers: [UserController],
+  providers: [UserService],
+})
+export class UserModule {}
