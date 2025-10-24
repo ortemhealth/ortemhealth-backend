@@ -1,5 +1,12 @@
-version: '3.8'
-
+version: '3'
 services:
-  # Placeholder for service definitions
-  # TODO: Add service configurations
+  auth:
+    build: ./apps/auth-service
+    ports:
+      - '3001:3001'
+    environment:
+      - JWT_SECRET=supersecret
+  user:
+    build: ./apps/user-service
+    ports:
+      - '3002:3002'
