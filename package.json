@@ -1,6 +1,12 @@
 {
-  "name": "shared",
-  "version": "1.0.0",
-  "main": "index.js",
-  "types": "index.d.ts"
+  "name": "ortemhealth-backend",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "libs/shared"
+  ],
+  "scripts": {
+    "install": "npm install --workspaces",
+    "test": "npm run test --workspaces"
+  }
 }
