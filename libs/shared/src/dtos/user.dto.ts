@@ -1,6 +1,9 @@
-// User DTO
-// Placeholder for user data transfer object
-
-export class UserDto {
-  // TODO: Add user DTO properties
+export class LoginDto {
+  email: string;
+  password: string;
+}
+export class RegisterDto {
+  email: string;
+  password: string;
+  role: 'patient' | 'doctor' | 'admin';
 }
