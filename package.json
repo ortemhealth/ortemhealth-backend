@@ -1,0 +1,9 @@
+{
+  "name": "ortemhealth-backend",
+  "version": "1.0.0",
+  "description": "Ortem Health Backend Services",
+  "private": true,
+  "scripts": {
+    "start": "echo 'TODO: Add start script'"
+  }
+}
