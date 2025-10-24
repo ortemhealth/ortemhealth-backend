@@ -1,6 +1,12 @@
-// User Controller
-// Placeholder content for user.controller.ts
+import { Controller, Get, Param } from '@nestjs/common';
+import { UserService } from './user.service';
 
+@Controller('user')
 export class UserController {
-  // Controller implementation
+  constructor(private readonly userService: UserService) {}
+
+  @Get(':id')
+  getUser(@Param('id') id: string) {
+    return this.userService.findById(id);
+  }
 }
