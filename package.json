@@ -1,9 +1,6 @@
 {
-  "name": "ortemhealth-backend",
+  "name": "shared",
   "version": "1.0.0",
-  "description": "Ortem Health Backend Services",
-  "private": true,
-  "scripts": {
-    "start": "echo 'TODO: Add start script'"
-  }
+  "main": "index.js",
+  "types": "index.d.ts"
 }
