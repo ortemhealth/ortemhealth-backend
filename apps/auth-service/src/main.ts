@@ -1,7 +1,8 @@
-// Main Entry Point
-// Placeholder content for main.ts
+import { NestFactory } from '@nestjs/core';
+import { AuthModule } from './auth.module';
 
 async function bootstrap() {
-  // Bootstrap implementation
+  const app = await NestFactory.create(AuthModule);
+  await app.listen(3001);
 }
 bootstrap();
