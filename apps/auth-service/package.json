@@ -1,0 +1,13 @@
+{
+  "name": "auth-service",
+  "version": "1.0.0",
+  "description": "Authentication service for OrtemHealth",
+  "main": "dist/main.js",
+  "scripts": {
+    "start": "node dist/main.js",
+    "build": "tsc",
+    "test": "jest"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
