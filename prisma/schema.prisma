@@ -1,0 +1,93 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String   @id @default(uuid())
+  email       String   @unique
+  password    String
+  fullName    String
+  role        String
+  phone       String
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  doctors     Doctor[]
+  patients    Patient[]
+  payments    Payment[]
+  notifications Notification[]
+}
+
+model Doctor {
+  id                String   @id @default(uuid())
+  specialty         String
+  licenseNumber     String
+  yearsOfExperience Int
+  consultationFee   Int
+  isAvailable       Boolean
+  userId            String
+  user              User     @relation(fields: [userId], references: [id])
+  appointments      Appointment[]
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model Patient {
+  id               String   @id @default(uuid())
+  dateOfBirth      DateTime
+  gender           String
+  address          String
+  insuranceProvider String?
+  insuranceNumber   String?
+  userId           String
+  user             User     @relation(fields: [userId], references: [id])
+  appointments     Appointment[]
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model Appointment {
+  id          String   @id @default(uuid())
+  patientId   String
+  doctorId    String
+  timeSlot    DateTime
+  reason      String
+  status      String
+  patient     Patient  @relation(fields: [patientId], references: [id])
+  doctor      Doctor   @relation(fields: [doctorId], references: [id])
+  payment     Payment?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Payment {
+  id            String   @id @default(uuid())
+  appointmentId String
+  userId        String
+  amount        Int
+  currency      String
+  status        String
+  gateway       String
+  txnId         String
+  appointment   Appointment @relation(fields: [appointmentId], references: [id])
+  user          User        @relation(fields: [userId], references: [id])
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String
+  channel   String
+  subject   String
+  message   String
+  sent      Boolean  @default(false)
+  sentAt    DateTime?
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+}
